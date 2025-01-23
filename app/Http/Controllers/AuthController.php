@@ -25,7 +25,7 @@ class AuthController extends Controller
             if($role === 'admin'){
                 return redirect()->intended('adminDash');
             }elseif($role === 'users'){
-                return redirect()->intended('index');
+                return redirect()->intended('taskMenu');
             }
         }else{
             return redirect('/')->with('failed', 'Email atau Password Salah');
