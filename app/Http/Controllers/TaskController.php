@@ -5,62 +5,55 @@ namespace App\Http\Controllers;
 use App\Models\Task;
 use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class TaskController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        return view('task.index');
+        $tasks = Task::all();
+        return view('task.index', compact('tasks'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    // Simpan task baru
+    public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'category' => 'required|in:All,Work,Diary,Practice',
+            'priority' => 'required|in:Low,Medium,High',
+            'deadline' => 'nullable|date',
+        ]);
+    
+        // Debugging: log data
+        Log::info('Validated data:', $validated);
+    
+        // Simpan ke database
+        $task = Task::create($validated);
+    
+        return response()->json(['task' => $task], 200);
     }
+    
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreTaskRequest $request)
+    // Update task
+    public function update(Request $request, Task $task)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'category' => 'required|in:All,Work,Diary,Practice',
+            'priority' => 'required|in:Low,Medium,High',
+            'deadline' => 'nullable|date',
+        ]);
+
+        $task->update($request->all());
+        return response()->json(['task' => $task], 200);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Task $task)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Task $task)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateTaskRequest $request, Task $task)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
+    // Hapus task
     public function destroy(Task $task)
     {
-        //
+        $task->delete();
+        return response()->json(['success' => true], 200);
     }
 }

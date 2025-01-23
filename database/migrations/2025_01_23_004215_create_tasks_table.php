@@ -13,7 +13,11 @@ return new class extends Migration
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('name'); // Nama tugas
+            $table->enum('category', ['All', 'Work', 'Diary', 'Practice'])->default('All'); // Kategori
+            $table->enum('priority', ['Low', 'Medium', 'High'])->default('Medium'); // Prioritas
+            $table->dateTime('deadline')->nullable(); // Deadline
+            $table->timestamps(); // Waktu create/update
         });
     }
 

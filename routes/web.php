@@ -23,6 +23,10 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 Route::middleware(['auth', 'role:users'])->group(function () {
     Route::controller(TaskController::class)->group(function () {
         Route::get('/taskMenu', 'index')->name('taskMenu');
+        Route::post('/createTask', 'store')->name('createTask');
+        Route::get('/editTask/{task}', 'edit')->name('editTask');
+        Route::post('/updateTask/{task}', 'update')->name('updateTask');
+        Route::delete('/deleteTask/{task}', 'destroy')->name('deleteTask');
 });
 
 });

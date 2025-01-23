@@ -13,7 +13,7 @@
 
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/img/favicon.jpg') }}">
 
-    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
 
     <link rel="stylesheet" href="{{ asset('assets/css/animate.css') }}">
 
@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="{{ asset('assets/plugins/fontawesome/css/fontawesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/plugins/fontawesome/css/all.min.css') }}">
 
-    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('../assets/css/style.css') }}">
 
     <link rel="stylesheet" href="../dist/css/adminlte.min.css">
 
@@ -169,7 +169,6 @@
     <script src="{{ asset('assets/js/script.js') }}"></script>
 
     <!-- jQuery -->
-    <script src="../plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap -->
     <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- Ekko Lightbox -->
@@ -178,11 +177,6 @@
     <script src="../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
     <!-- AdminLTE App -->
     <script src="../dist/js/adminlte.min.js"></script>
-    <!-- Filterizr-->
-    <script src="../plugins/filterizr/jquery.filterizr.min.js"></script>
-    <!-- AdminLTE for demo purposes -->
-    <script src="../dist/js/demo.js"></script>
-    <!-- Page specific script -->
     <script>
         $(function() {
 
