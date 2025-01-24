@@ -17,4 +17,8 @@ class Task extends Model
         'deadline',
     ];
 
+    protected $casts = [
+        'deadline' => 'datetime', // Pastikan kolom deadline menjadi objek Carbon
+    ];
+
 }
