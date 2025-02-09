@@ -9,15 +9,17 @@
         content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern,  html5, responsive">
     <meta name="author" content="Dreamguys - Bootstrap Admin Template">
     <meta name="robots" content="noindex, nofollow">
-    <title>Dreams Pos admin template</title>
+    <title>Aplikasi ToDoList</title>
 
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/img/favicon.jpg') }}">
 
-    <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
 
     <link rel="stylesheet" href="{{ asset('assets/css/animate.css') }}">
 
     <link rel="stylesheet" href="{{ asset('assets/css/dataTables.bootstrap4.min.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('assets/plugins/fullcalendar/fullcalendar.min.css') }}">
 
     <link rel="stylesheet" href="{{ asset('assets/plugins/fontawesome/css/fontawesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/plugins/fontawesome/css/all.min.css') }}">
@@ -71,46 +73,9 @@
                         </form>
                     </div>
                 </li>
-
-
-                <li class="nav-item dropdown has-arrow main-drop">
-                    <a href="javascript:void(0);" class="dropdown-toggle nav-link userset" data-bs-toggle="dropdown">
-                        <span class="user-img"><img src="assets/img/profiles/avator1.jpg" alt="">
-                            <span class="status online"></span></span>
-                    </a>
-                    <div class="dropdown-menu menu-drop-user">
-                        <div class="profilename">
-                            <div class="profileset">
-                                <span class="user-img"><img src="assets/img/profiles/avator1.jpg" alt="">
-                                    <span class="status online"></span></span>
-                                <div class="profilesets">
-                                    <h6>John Doe</h6>
-                                    <h5>Admin</h5>
-                                </div>
-                            </div>
-                            <hr class="m-0">
-                            <a class="dropdown-item" href="profile.html"> <i class="me-2" data-feather="user"></i>
-                                My Profile</a>
-                            <a class="dropdown-item" href="generalsettings.html"><i class="me-2"
-                                    data-feather="settings"></i>Settings</a>
-                            <hr class="m-0">
-                            <a class="dropdown-item logout pb-0" href="signin.html"><img
-                                    src="assets/img/icons/log-out.svg" class="me-2" alt="img">Logout</a>
-                        </div>
-                    </div>
-                </li>
             </ul>
 
 
-            <div class="dropdown mobile-user-menu">
-                <a href="javascript:void(0);" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
-                    aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
-                <div class="dropdown-menu dropdown-menu-right">
-                    <a class="dropdown-item" href="profile.html">My Profile</a>
-                    <a class="dropdown-item" href="generalsettings.html">Settings</a>
-                    <a class="dropdown-item" href="signin.html">Logout</a>
-                </div>
-            </div>
 
         </div>
 
@@ -123,21 +88,20 @@
                             <a href="index.html"><img src="assets/img/icons/dashboard.svg" alt="img"><span>
                                     Dashboard</span> </a>
                         </li>
-                        <li class="submenu">
-                            <a href="javascript:void(0);"><img src="assets/img/icons/product.svg"
-                                    alt="img"><span> Product</span> <span class="menu-arrow"></span></a>
-                            <ul>
-                                <li><a href="productlist.html">Product List</a></li>
-                                <li><a href="addproduct.html">Add Product</a></li>
-                                <li><a href="categorylist.html">Category List</a></li>
-                                <li><a href="addcategory.html">Add Category</a></li>
-                                <li><a href="subcategorylist.html">Sub Category List</a></li>
-                                <li><a href="subaddcategory.html">Add Sub Category</a></li>
-                                <li><a href="brandlist.html">Brand List</a></li>
-                                <li><a href="addbrand.html">Add Brand</a></li>
-                                <li><a href="importproduct.html">Import Products</a></li>
-                                <li><a href="barcode.html">Print Barcode</a></li>
-                            </ul>
+                        <li>
+                            <a href="{{ route('task.index') }}"><i data-feather="file"></i><span> Tasks</span> </a>
+                        </li>
+
+                        <li>
+                            <a href="{{ route('calendar') }}"><i data-feather="layout"></i> <span> Calendar </span></a>
+                        </li>
+
+                        <li>
+                            <a href="{{ route('charts') }}"><i data-feather="bar-chart-2"></i> <span> Charts </span></a>
+                        </li>
+                        <li>
+                            <a href="{{ route('login') }}"><img src="assets/img/icons/return1.svg" alt="img"><span>
+                                Logout</span></a>
                         </li>
                     </ul>
                 </div>
@@ -158,8 +122,14 @@
 
     <script src="{{ asset('assets/js/jquery.slimscroll.min.js') }}"></script>
 
+    <script src="{{ asset('assets/plugins/moment/moment.min.js') }}"></script>
+
     <script src="{{ asset('assets/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/js/dataTables.bootstrap4.min.js') }}"></script>
+
+    <script src="{{ asset('assets/js/jquery-ui.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/fullcalendar/fullcalendar.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/fullcalendar/jquery.fullcalendar.js') }}"></script>
 
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
 
@@ -177,6 +147,20 @@
     <script src="../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
     <!-- AdminLTE App -->
     <script src="../dist/js/adminlte.min.js"></script>
+    <script src="../../plugins/flot/jquery.flot.js"></script>
+    <!-- FLOT RESIZE PLUGIN - allows the chart to redraw when the window is resized -->
+    <script src="../../plugins/flot/plugins/jquery.flot.resize.js"></script>
+    <!-- FLOT PIE PLUGIN - also used to draw donut charts -->
+    <script src="../../plugins/flot/plugins/jquery.flot.pie.js"></script>
+
+    <script src="../dist/js/pages/dashboard.js"></script>
+    <script src="../plugins/jquery-knob/jquery.knob.min.js"></script>
+    <script src="../plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+    <script src="../plugins/jqvmap/jquery.vmap.min.js"></script>
+    <script src="../plugins/daterangepicker/daterangepicker.js"></script>
+    <script src="../plugins/sparklines/sparkline.js"></script>
+
+
     <script>
         $(function() {
 

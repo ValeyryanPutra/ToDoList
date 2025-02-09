@@ -14,7 +14,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        $this->call([
+            CategorySeeder::class,  // Pastikan ini ada
+        ]);
 
         User::create([
             'name' => 'Ryan',
@@ -29,5 +31,6 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('users'),
             'role' => 'users',
         ]);
+
     }
 }

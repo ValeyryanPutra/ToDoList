@@ -21,7 +21,7 @@ class TaskPolicy
      */
     public function view(User $user, Task $task): bool
     {
-        return false;
+        return $user->id === $task->user_id;  // User hanya bisa melihat task miliknya
     }
 
     /**
@@ -29,7 +29,7 @@ class TaskPolicy
      */
     public function create(User $user): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -37,7 +37,7 @@ class TaskPolicy
      */
     public function update(User $user, Task $task): bool
     {
-        return false;
+        return $user->id === $task->user_id;  // User hanya bisa mengupdate task miliknya
     }
 
     /**
@@ -45,7 +45,7 @@ class TaskPolicy
      */
     public function delete(User $user, Task $task): bool
     {
-        return false;
+        return $user->id === $task->user_id;  // User hanya bisa menghapus task miliknya
     }
 
     /**

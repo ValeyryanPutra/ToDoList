@@ -1,5 +1,26 @@
 @import "../../../../css2";
 
+
+.task-item.completed {
+    background-color: #f5f5f5;
+    color: #a1a1a1;
+    text-decoration: line-through;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 8px;
+}
+
+.completed-task {
+    text-decoration: line-through;
+    color: #6c757d; /* Warna abu-abu */
+}
+
+.task-card[data-completed="1"] {
+    background-color: #f8f9fa; /* Warna latar lebih terang */
+    border-left: 4px solid #28a745; /* Garis hijau di kiri */
+}
+
+
 .css-equal-content,
 .css-equal-heights {
     display: flex;
