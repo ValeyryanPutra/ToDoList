@@ -187,23 +187,20 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="name">Task Name</label>
-                            <input type="text" name="name" id="name" class="form-control" required
-                                value="{{ $task->name }}">
+                            <input type="text" name="name" id="name" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label for="category">Category</label>
-                            <select name="category_id" id="category_id" class="form-control" required
-                                value="{{ $task->category_id }}">
+                            <select name="category_id" id="category_id" class="form-control" required>
                                 @foreach ($categories as $category)
-<option value="{{ $category->id }}">{{ $category->name }}
-                                </option>
+                                    <option value="{{ $category->id }}">{{ $category->name }}
+                                    </option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="priority">Priority</label>
-                            <select name="priority" id="priority" class="form-control" required
-                                value="{{ $task->priority }}">
+                            <select name="priority" id="priority" class="form-control" required>
                                 <option value="Low">Low
                                 </option>
                                 <option value="Medium">Medium</option>
@@ -212,8 +209,7 @@
                         </div>
                         <div class="form-group">
                             <label for="deadline">Deadline</label>
-                            <input type="datetime-local" name="deadline" id="deadline" class="form-control"
-                                value="{{ $task->deadline }}">
+                            <input type="datetime-local" name="deadline" id="deadline" class="form-control">
                         </div>
                     </div>
                     <div class="modal-footer justify-content-between">`
@@ -341,6 +337,12 @@
                 calendarPopup.style.display = 'block';
 
                 flatpickr("#datepicker-" + taskId, {
+                    enableTime: true,
+                    noCalendar: false,
+                    dateFormat: "Y-m-d H:i",
+                    time_24hr: true,
+                    minuteIncrement: 1, // Memungkinkan pemilihan menit per 1 menit
+                    hourIncrement: 1, // Memungkinkan pemilihan jam per 1 jam
                     defaultDate: currentDate,
                     onChange: function(selectedDates, dateStr) {
                         dateLabel.innerText = dateStr;
@@ -369,6 +371,7 @@
                             });
                     }
                 });
+
             });
 
             document.addEventListener('click', function(event) {

@@ -1,203 +1,191 @@
 @extends('layouts.apps')
 @section('content')
+
+
+    <div class="row">
+        <div class="col-lg-4 col-6">
+            <!-- small box -->
+            <div class="small-box bg-warning">
+                <div class="inner">
+                    <h3>{{ $userCount }}</h3>
+                    <p>Users</p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-person-add"></i>
+                </div>
+                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-6">
+            <!-- small box -->
+            <div class="small-box bg-success">
+                <div class="inner">
+                    <h3>{{ $completedTasks }}</h3>
+                    <p>Complete Task</p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-stats-bars"></i>
+                </div>
+                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-6">
+            <!-- small box -->
+            <div class="small-box bg-danger">
+                <div class="inner">
+                    <h3>{{ $incompleteTasks }}</h3>
+                    <p>Incomplete Task</p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-pie-graph"></i>
+                </div>
+                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+    </div>
+
     <section class="content">
         <div class="container-fluid">
-            <!-- Small boxes (Stat box) -->
             <div class="row">
-                <div class="col-lg-3 col-6">
-                    <!-- small box -->
-                    <div class="small-box bg-info">
-                        <div class="inner">
-                            <h3>150</h3>
-
-                            <p>New Orders</p>
-                        </div>
-                        <div class="icon">
-                            <i class="ion ion-bag"></i>
-                        </div>
-                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-                <!-- ./col -->
-                <div class="col-lg-3 col-6">
-                    <!-- small box -->
-                    <div class="small-box bg-success">
-                        <div class="inner">
-                            <h3>53<sup style="font-size: 20px">%</sup></h3>
-
-                            <p>Bounce Rate</p>
-                        </div>
-                        <div class="icon">
-                            <i class="ion ion-stats-bars"></i>
-                        </div>
-                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-                <!-- ./col -->
-                <div class="col-lg-3 col-6">
-                    <!-- small box -->
-                    <div class="small-box bg-warning">
-                        <div class="inner">
-                            <h3>44</h3>
-
-                            <p>User Registrations</p>
-                        </div>
-                        <div class="icon">
-                            <i class="ion ion-person-add"></i>
-                        </div>
-                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-                <!-- ./col -->
-                <div class="col-lg-3 col-6">
-                    <!-- small box -->
-                    <div class="small-box bg-danger">
-                        <div class="inner">
-                            <h3>65</h3>
-
-                            <p>Unique Visitors</p>
-                        </div>
-                        <div class="icon">
-                            <i class="ion ion-pie-graph"></i>
-                        </div>
-                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-                <!-- ./col -->
-            </div>
-            <!-- /.row -->
-            <!-- Main row -->
-            <div class="row">
-                <!-- Left col -->
-                <section class="col-lg-7 connectedSortable">
-                    <!-- Custom tabs (Charts with tabs)-->
-                    <div class="card">
+                <div class="col-md-12">
+                    <!-- Donut chart -->
+                    <div class="card card-primary card-outline">
                         <div class="card-header">
                             <h3 class="card-title">
-                                <i class="fas fa-chart-pie mr-1"></i>
-                                Sales
+                                <i class="far fa-chart-bar"></i>
+                                Donut Chart
                             </h3>
                             <div class="card-tools">
-                                <ul class="nav nav-pills ml-auto">
-                                    <li class="nav-item">
-                                        <a class="nav-link active" href="#revenue-chart" data-toggle="tab">Area</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#sales-chart" data-toggle="tab">Donut</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div><!-- /.card-header -->
-                        <div class="card-body">
-                            <div class="tab-content p-0">
-                                <!-- Morris chart - Sales -->
-                                <div class="chart tab-pane active" id="revenue-chart"
-                                    style="position: relative; height: 300px;">
-                                    <canvas id="revenue-chart-canvas" height="300" style="height: 300px;"></canvas>
-                                </div>
-                                <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;">
-                                    <canvas id="sales-chart-canvas" height="300" style="height: 300px;"></canvas>
-                                </div>
-                            </div>
-                        </div><!-- /.card-body -->
-                    </div>
-                    <!-- /.card -->
-
-                </section>
-                <!-- /.Left col -->
-                <!-- right col (We are only adding the ID to make the widgets sortable)-->
-                <section class="col-lg-5 connectedSortable">
-
-                    <!-- Map card -->
-                    <div class="card bg-gradient-primary">
-                        <div class="card-header border-0">
-                            <h3 class="card-title">
-                                <i class="fas fa-map-marker-alt mr-1"></i>
-                                Visitors
-                            </h3>
-                            <!-- card tools -->
-                            <div class="card-tools">
-                                <button type="button" class="btn btn-primary btn-sm daterange" title="Date range">
-                                    <i class="far fa-calendar-alt"></i>
-                                </button>
-                                <button type="button" class="btn btn-primary btn-sm" data-card-widget="collapse"
-                                    title="Collapse">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                     <i class="fas fa-minus"></i>
                                 </button>
-                            </div>
-                            <!-- /.card-tools -->
-                        </div>
-                        <div class="card-body">
-                            <div id="world-map" style="height: 250px; width: 100%;"></div>
-                        </div>
-                        <!-- /.card-body-->
-                        <div class="card-footer bg-transparent">
-                            <div class="row">
-                                <div class="col-4 text-center">
-                                    <div id="sparkline-1"></div>
-                                    <div class="text-white">Visitors</div>
-                                </div>
-                                <!-- ./col -->
-                                <div class="col-4 text-center">
-                                    <div id="sparkline-2"></div>
-                                    <div class="text-white">Online</div>
-                                </div>
-                                <!-- ./col -->
-                                <div class="col-4 text-center">
-                                    <div id="sparkline-3"></div>
-                                    <div class="text-white">Sales</div>
-                                </div>
-                                <!-- ./col -->
-                            </div>
-                            <!-- /.row -->
-                        </div>
-                    </div>
-                    <!-- /.card -->
-
-                    <!-- Calendar -->
-                    <div class="card bg-gradient-success">
-                        <div class="card-header border-0">
-
-                            <h3 class="card-title">
-                                <i class="far fa-calendar-alt"></i>
-                                Calendar
-                            </h3>
-                            <!-- tools card -->
-                            <div class="card-tools">
-                                <!-- button with a dropdown -->
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-success btn-sm dropdown-toggle"
-                                        data-toggle="dropdown" data-offset="-52">
-                                        <i class="fas fa-bars"></i>
-                                    </button>
-                                    <div class="dropdown-menu" role="menu">
-                                        <a href="#" class="dropdown-item">Add new event</a>
-                                        <a href="#" class="dropdown-item">Clear events</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a href="#" class="dropdown-item">View calendar</a>
-                                    </div>
-                                </div>
-                                <button type="button" class="btn btn-success btn-sm" data-card-widget="collapse">
-                                    <i class="fas fa-minus"></i>
-                                </button>
-                                <button type="button" class="btn btn-success btn-sm" data-card-widget="remove">
+                                <button type="button" class="btn btn-tool" data-card-widget="remove">
                                     <i class="fas fa-times"></i>
                                 </button>
                             </div>
-                            <!-- /. tools -->
                         </div>
-                        <!-- /.card-header -->
-                        <div class="card-body pt-0">
-                            <!--The calendar -->
-                            <div id="calendar" style="width: 100%"></div>
+                        <div class="card-body">
+                            <canvas id="donut-chart" style="height: 300px;"></canvas>
                         </div>
-                        <!-- /.card-body -->
                     </div>
-                    <!-- /.card -->
-                </section>
-                <!-- right col -->
+                </div>
             </div>
-            <!-- /.row (main row) -->
-        </div><!-- /.container-fluid -->
+        </div>
     </section>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        const ctxDonut = document.getElementById('donut-chart').getContext('2d');
+        const donutChart = new Chart(ctxDonut, {
+            type: 'doughnut',
+            data: {
+                labels: ['Tugas Selesai', 'Tugas Belum Selesai'],
+                datasets: [{
+                    data: [{{ $completedTasks }}, {{ $incompleteTasks }}],
+                    backgroundColor: ['#28a745', '#dc3545'], // Hijau untuk selesai, merah untuk belum
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                    }
+                }
+            }
+        });
+    </script>
+
+    {{-- <script>
+        const ctx = document.getElementById('task_charts').getContext('2d');
+
+        // Data dari controller
+        const completedTasks = @json(array_values($dailyCompletedTasks));
+
+        // Label Hari dalam Bahasa Indonesia
+        const taskDates = ['Min', 'Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab'];
+
+        let chart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: taskDates,
+                datasets: [{
+                    label: 'Tugas Selesai',
+                    data: completedTasks,
+                    backgroundColor: 'rgba(54, 162, 235, 0.7)', // Warna biru muda
+                    borderRadius: 5, // Bar sedikit melengkung
+                    barThickness: 20 // Lebar bar
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            color: '#6c757d', // Warna abu-abu untuk angka
+                            font: {
+                                size: 12
+                            }
+                        },
+                        grid: {
+                            color: 'rgba(200, 200, 200, 0.2)' // Garis grid tipis
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            color: '#6c757d', // Warna abu-abu untuk label hari
+                            font: {
+                                size: 12
+                            }
+                        },
+                        grid: {
+                            display: false // Hilangkan garis vertikal di sumbu X
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false // Sembunyikan label di atas chart
+                    },
+                    tooltip: {
+                        backgroundColor: '#343a40', // Warna tooltip gelap
+                        titleColor: '#fff',
+                        bodyColor: '#fff'
+                    }
+                }
+            }
+        });
+
+        function filterTasksByDate() {
+            const selectedDate = document.getElementById('filter_date').value;
+
+            // Simulasi filter data berdasarkan tanggal yang dipilih
+            // Ganti dengan pemanggilan API atau query yang sesuai
+            const filteredTasks = completedTasks.map((task, index) => selectedDate ? Math.floor(Math.random() * 5) : task);
+
+            chart.data.datasets[0].data = filteredTasks;
+            chart.update();
+        }
+    </script>
+
+    <style>
+        #task_charts {
+            background-color: #eaf6ff;
+            /* Latar belakang biru muda */
+            border-radius: 15px;
+            /* Sudut membulat */
+            padding: 20px;
+            /* Padding di dalam kotak */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            /* Efek bayangan lembut */
+        }
+    </style> --}}
 @endsection

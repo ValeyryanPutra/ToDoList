@@ -92,9 +92,9 @@
                             <a href="{{ route('task.index') }}"><i data-feather="file"></i><span> Tasks</span> </a>
                         </li>
 
-                        <li>
+                        {{-- <li>
                             <a href="{{ route('calendar') }}"><i data-feather="layout"></i> <span> Calendar </span></a>
-                        </li>
+                        </li> --}}
 
                         <li>
                             <a href="{{ route('charts') }}"><i data-feather="bar-chart-2"></i> <span> Charts </span></a>

@@ -1,63 +1,38 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Task;
 
 class DashboardController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        return view('admin.index');
-    }
+        // Mengambil jumlah total user
+        $userCount = User::count();
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
+        // Menghitung jumlah tugas selesai dan tidak selesai
+        $completedTasks = Task::where('is_completed', true)->count();
+        $incompleteTasks = Task::where('is_completed', false)->count();
+        
+        // Data untuk bar chart (misal berdasarkan bulan)
+        $barData = [
+            ['January', Task::whereMonth('created_at', 1)->count()],
+            ['February', Task::whereMonth('created_at', 2)->count()],
+            ['March', Task::whereMonth('created_at', 3)->count()],
+            ['April', Task::whereMonth('created_at', 4)->count()],
+            ['May', Task::whereMonth('created_at', 5)->count()],
+            ['June', Task::whereMonth('created_at', 6)->count()],
+        ];
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+        // Data untuk donut chart
+        $donutData = [
+            ['label' => 'Completed', 'data' => $completedTasks, 'color' => '#3c8dbc'],
+            ['label' => 'Incomplete', 'data' => $incompleteTasks, 'color' => '#0073b7'],
+        ];
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return view('admin.index', compact('userCount', 'completedTasks', 'incompleteTasks', 'barData', 'donutData'));
     }
 }

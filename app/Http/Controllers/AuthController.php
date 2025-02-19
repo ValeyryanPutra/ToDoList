@@ -51,7 +51,7 @@ class AuthController extends Controller
 
         Auth::login($user); // Langsung login setelah register
 
-        return redirect()->route('taskMenu')->with('success', 'Registrasi berhasil');
+        return redirect()->route('login')->with('success', 'Registrasi berhasil');
     }
 
     public function logout(Request $request)

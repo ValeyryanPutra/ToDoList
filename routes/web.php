@@ -6,6 +6,7 @@ use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\ChartController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -32,6 +33,13 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::put('/categoryAdmin/{category}', 'update')->name('categoryAdmin.update'); // Update kategori
         Route::delete('/categoryAdmin/{category}', 'destroy')->name('categoryDestroy'); // Hapus kategori
         Route::post('/admin/categories/set-default',  'setDefaultForUsers')->name('category.setDefaultForUsers');
+    });
+    Route::controller(UserController::class)->group(function () {
+        Route::get('/users', 'index')->name('users');
+        Route::post('/users/store', 'store')->name('userStore');
+        Route::get('/users/edit/{id}', 'edit')->name('usersEdit');
+        Route::post('/users/update/{id}', 'update')->name('usersUpdate');
+        Route::delete('/users/delete/{id}', 'destroy')->name('usersDelete');
     });
 });
 

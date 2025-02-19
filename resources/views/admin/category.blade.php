@@ -78,7 +78,7 @@
                 </div>
             </div> <!-- /.card -->
 
-            <div class="container">
+            {{-- <div class="container">
                 <h2>Manage Categories</h2>
                 <form action="{{ route('category.setDefaultForUsers') }}" method="POST">
                     @csrf
@@ -103,7 +103,7 @@
                     </table>
                     <button type="submit" class="btn btn-primary">Save</button>
                 </form>
-            </div>
+            </div> --}}
         </div> <!-- /.col -->
     </div> <!-- /.row -->
 @endsection
