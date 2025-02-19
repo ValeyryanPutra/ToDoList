@@ -5,6 +5,7 @@ use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\ChartController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\RekapController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -17,8 +18,6 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('/login', 'authenticate')->name('loginProses');
     Route::post('/register', 'register')->name('register');
     Route::post('/logout', 'logout')->name('logout');
-
-
 });
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
@@ -30,7 +29,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/categoryAdmin/create', 'create')->name('categoryAdmin.create'); // Form tambah kategori
         Route::post('/categoryAdmin', 'store')->name('categoryStore'); // Simpan kategori baru
         Route::get('/categoryAdmin/{category}/edit', 'edit')->name('categoryEdit'); // Form edit kategori
-        Route::put('/categoryAdmin/{category}', 'update')->name('categoryAdmin.update'); // Update kategori
+        Route::post('/categoryAdmin/{category}', 'update')->name('categoryUpdate'); // Update kategori
         Route::delete('/categoryAdmin/{category}', 'destroy')->name('categoryDestroy'); // Hapus kategori
         Route::post('/admin/categories/set-default',  'setDefaultForUsers')->name('category.setDefaultForUsers');
     });
@@ -40,6 +39,10 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/users/edit/{id}', 'edit')->name('usersEdit');
         Route::post('/users/update/{id}', 'update')->name('usersUpdate');
         Route::delete('/users/delete/{id}', 'destroy')->name('usersDelete');
+    });
+    Route::controller(RekapController::class)->group(function () {
+        Route::get('/rekap',  'index')->name('rekap');
+        Route::get('/rekap/{id}/tasks',  'viewTasks')->name('rekapTask');
     });
 });
 
@@ -54,7 +57,6 @@ Route::middleware(['auth', 'role:users'])->group(function () {
         Route::post('/getTasksByDate', 'getTasksByDate')->name('getTasksByDate'); // Mendapatkan tugas berdasarkan tanggal
         Route::post('/updateTaskStatus/{id}', 'updateStatus')->name('updateTaskStatus');
         Route::post('/tasks/update-priority/{id}', 'updatePriority')->name('updatePriority');
-
     });
 
     Route::controller(ChartController::class)->group(function () {

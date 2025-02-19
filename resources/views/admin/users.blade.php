@@ -52,7 +52,7 @@
             <br>
 
 
-            <!-- DataTable Kategori -->
+            <!-- DataTable Users -->
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">DataTable Users</h3>

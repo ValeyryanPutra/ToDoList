@@ -41,11 +41,12 @@ class CategoriesController extends Controller
 
     public function edit(Category $category)
     {
-        return view('admin.category.edit', compact('category'));
+        return view('admin.category', compact('category'));
     }
 
     public function update(Request $request, Category $category)
     {
+        // dd($request)->all();
         $request->validate([
             'name' => 'required|unique:categories,name,' . $category->id,
             'is_default' => 'sometimes|boolean',

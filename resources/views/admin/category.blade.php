@@ -62,13 +62,16 @@
                                     <td>{{ $category->name }}</td>
                                     <td>
                                         <!-- Tombol Edit -->
-                                        <a href="{{ route('categoryEdit', $category->id) }}" class="btn btn-warning">Edit</a>
-                                        
+                                        <button type="button" class="btn btn-warning btn-sm"data-toggle="modal"
+                                            data-target="#editCategoryModal">Edit</button>
+
                                         <!-- Tombol Hapus -->
-                                        <form action="{{ route('categoryDestroy', $category->id) }}" method="POST" class="d-inline">
+                                        <form action="{{ route('categoryDestroy', $category->id) }}" method="POST"
+                                            class="d-inline">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus kategori ini?')">Hapus</button>
+                                            <button type="submit" class="btn btn-danger"
+                                                onclick="return confirm('Yakin ingin menghapus kategori ini?')">Hapus</button>
                                         </form>
                                     </td>
                                 </tr>
@@ -76,34 +79,37 @@
                         </tbody>
                     </table>
                 </div>
-            </div> <!-- /.card -->
+            </div>
 
-            {{-- <div class="container">
-                <h2>Manage Categories</h2>
-                <form action="{{ route('category.setDefaultForUsers') }}" method="POST">
-                    @csrf
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Default for Users</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($categories as $category)
-                            <tr>
-                                <td>{{ $category->name }}</td>
-                                <td>
-                                    <input type="checkbox" name="default_categories[]" value="{{ $category->id }}"
-                                        {{ $category->is_default_for_users ? 'checked' : '' }}>
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                    <button type="submit" class="btn btn-primary">Save</button>
-                </form>
-            </div> --}}
-        </div> <!-- /.col -->
-    </div> <!-- /.row -->
+            {{-- Edit Modal Category --}}
+            <div class="modal fade" id="editCategoryModal" tabindex="-1" aria-labelledby="editUserModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <form id="editUserForm"
+                            method="POST" action="{{ isset($category) ? route('categoryUpdate', ['category' => $category->id]) : '' }}">
+                            @csrf
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="editUserModalLabel">Edit Category</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <input type="hidden" id="editUserId" name="id">
+                                <div class="form-group">
+                                    <label for="editName">Category</label>
+                                    <input type="text" class="form-control" id="editCategory" name="name" required>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                                <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

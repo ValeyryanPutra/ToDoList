@@ -21,14 +21,21 @@ class TaskController extends Controller
 
         // Ambil semua kategori dari database
         $categories = Category::all();
-
+        $status = $request->get('status', 'all');
         // Query untuk mengambil tugas berdasarkan kategori yang dipilih
         $tasks = Task::where('user_id', Auth::id())
             ->when($categoryId !== 'All', function ($query) use ($categoryId) {
                 return $query->where('category_id', $categoryId);
+            })        ->when($status === 'completed', function ($query) {
+                return $query->where('is_completed', true);
+            })
+            ->when($status === 'pending', function ($query) {
+                return $query->where('is_completed', false);
             })
             ->orderBy('deadline', 'asc')
             ->get();
+
+            
 
         $groupedTasks = collect();
 
@@ -71,6 +78,8 @@ class TaskController extends Controller
 
         $task = new Task($request->all());
         $task->user_id = Auth::id();
+        $task->is_completed = false; // Default Pending
+        $task->status = 'Pending';
         $task->save();
 
         return redirect()->route('task.index')->with('success', 'Task created successfully.');
@@ -93,9 +102,12 @@ class TaskController extends Controller
             'category_id' => 'required|exists:categories,id',
             'priority' => 'required|in:Low,Medium,High',
             'deadline' => 'nullable|date|after_or_equal:today',
+            'is_completed' => 'boolean',
         ]);
 
         $task->update($validatedData);
+        $task->status = $task->is_completed ? 'Completed' : 'Pending';
+        $task->save();
 
         return redirect()->route('task.index')->with('success', 'Task updated successfully.');
     }
@@ -124,6 +136,7 @@ class TaskController extends Controller
     public function toggleComplete(Task $task)
     {
         $task->is_completed = !$task->is_completed;
+        $task->status = $task->is_completed ? 'Completed' : 'Pending';
         $task->save();
 
         return redirect()->back()->with('success', 'Status tugas berhasil diperbarui.');

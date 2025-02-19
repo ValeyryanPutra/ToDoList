@@ -75,4 +75,11 @@ class UserController extends Controller
 
         return redirect()->route('users')->with('success', 'User berhasil dihapus.');
     }
+
+    public function viewTasks($id)
+    {
+        $user = User::with('tasks')->findOrFail($id); // Ambil user beserta task-nya
+        return view('admin.rekapUsers', compact('users'));
+    }
+    
 }

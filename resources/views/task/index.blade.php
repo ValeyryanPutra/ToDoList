@@ -68,7 +68,7 @@
                                         style="display:inline;">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-tool text-danger">
+                                        <button type="submit" class="btn btn-tool text-danger" onclick="return confirm('Yakin ingin menghapus Task ini?')">
                                             <i class="fas fa-trash"></i>
                                         </button>
                                     </form>

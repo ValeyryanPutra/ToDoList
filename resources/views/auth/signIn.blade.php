@@ -18,7 +18,7 @@
                     <h2 class="title">Sign in</h2>
                     <div class="input-field">
                         <i class="fas fa-user"></i>
-                        <input type="email" name="email" id="email" placeholder="Username" />
+                        <input type="email" name="email" id="email" placeholder="Email" />
                     </div>
                     <div class="input-field">
                         <i class="fas fa-lock"></i>
@@ -79,7 +79,8 @@
                 <div class="content">
                     <h3>Sign In Please ?</h3>
                     <p>
-                        Silahkan Login
+                        Belum punya akun untuk membuat rencana kedepan?
+                        Silahkan SignUp 
                     </p>
                     <button class="btn transparent" id="sign-up-btn">
                         Sign up
@@ -91,8 +92,8 @@
                 <div class="content">
                     <h3>One of us ?</h3>
                     <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
-                        laboriosam ad deleniti.
+                        Sudah memiliki akun untuk membuat rencana kedepan?
+                        Silahkan login 
                     </p>
                     <button class="btn transparent" id="sign-in-btn">
                         Sign in

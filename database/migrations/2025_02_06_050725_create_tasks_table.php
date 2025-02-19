@@ -16,6 +16,7 @@ class CreateTasksTable extends Migration
             $table->enum('priority', ['Low', 'Medium', 'High'])->default('Medium');
             $table->dateTime('deadline')->nullable();
             $table->boolean('is_completed')->default(false);
+            $table->string('status')->default('Pending');
             $table->timestamps();
         });
     }
@@ -23,5 +24,8 @@ class CreateTasksTable extends Migration
     public function down(): void
     {
         Schema::dropIfExists('tasks');
+        Schema::table('tasks', function (Blueprint $table) {
+            $table->dropColumn('status');
+        });
     }
 }
